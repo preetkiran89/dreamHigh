@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	default-init-method="myInit" default-destroy-method="myDestroy"
+	default-autowire="byName"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<bean id="triangle" class="org.spring.engine.beginner.Triangle"
+		autowire="byName" factory-bean="trianglefactory"
+		factory-method="draw">
+	
+	</bean>
+
+	<bean id = "pointA" class = "org.spring.engine.beginner.Point">
+	<!-- <qualifier value="circlerelated"/> -->
+	<property name="x" value="-10"/>
+	<property name="y" value="10"/>
+	</bean>
+	
+	<bean id = "pointB" class = "org.spring.engine.beginner.Point">
+	<property name="x" value="-20"/>
+	<property name="y" value="0"/>
+	</bean>
+	
+	<bean id="pointC" class="org.spring.engine.beginner.Point">
+		<property name="x" value="10"></property>
+		<property name="y" value="20"></property>
+	</bean>
+	<bean id = "center" class = "org.spring.engine.beginner.Point">
+	<property name="x" value="20"/>
+	<property name="y" value="0"/>
+	</bean>
+	
+	<!-- <bean class = "org.spring.engine.beginner.BeanPostProcessorDisplayName" /> -->
+	
+	<!-- <bean class = "org.spring.engine.beginner.MyBeanFactoryPP"/>
+	<bean id="circle" class = "org.spring.engine.beginner.Circle">
+		<property name="center" ref="pointA"></property>
+	</bean>	 -->
+	
+	<!-- <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostFactoryProcessor"></bean>
+	
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean> -->
+	
+	<!-- <context:annotation-config/>
+	<context:component-scan base-package="org.spring.engine.beginner"/> -->
+	
+	<bean id="trianglefactory"
+		class="org.spring.engine.beginner.TriangleFactory">
+	</bean>
+	
+	<bean id="circle" class="org.spring.engine.beginner.Circle"></bean>
+	
+	<bean id="animal" class="org.spring.engine.beginner.Animal">
+	<property name="name" value="Lion"></property>
+	<property name="ownerOfAnimal" value="Preet"></property>
+	<property name="animals">
+		<list>
+			<value>Lion</value>
+			<value>Lion2</value>
+		</list>
+	</property>
+	<property name="foods">
+		<props>
+			<prop key="gorilla">banana</prop>
+			<prop key="lion">meat</prop>
+			<prop key="panda">bamboo</prop>
+			<prop key="horse">grass</prop>
+		</props>
+	</property>
+	<property name="triangles">
+		<map>
+			<entry key="preet" value-ref="triangle"></entry>
+		</map>
+	</property>
+	</bean>
+	<bean id="fileWriter" class="org.spring.engine.beginner.FileWriter">
+	</bean>
+	<bean id="consoleWriter" class="org.spring.engine.beginner.ConsoleWriter">
+	</bean>
+	<bean id="logger" class="org.spring.engine.beginner.Logger"></bean>
+	<context:annotation-config></context:annotation-config>
+</beans>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+<!--         <property name="LOG_PATH" value="/logs/mybooking/" /> -->
+        <property name="LOG_PATH" value="D:\\logs\\mybooking" />
+        <appender name="FileAppender"
+                class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <Append>true</Append>
+                <file>${LOG_PATH}/mybooking.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                        <!-- rollover daily -->
+                        <fileNamePattern>${LOG_PATH}/mybooking.log_%d{yyyy-MM-dd}
+                        </fileNamePattern>
+                        <!-- <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                                                             <maxFileSize>200MB</maxFileSize> </timeBasedFileNamingAndTriggeringPolicy> -->
+                </rollingPolicy>
+                <encoder>
+                        <!-- <pattern>%d [%thread] %-5level %class{36}.%M %L - %msg%n</pattern> -->
+                        <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M %L - %msg%n</pattern>
+                </encoder>
+        </appender>
+        <!-- <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+                             <encoder> <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} %M %L
+                - %msg%n</pattern> </encoder> </appender>
+ -->
+        <logger name="com.online.bus" level="INFO" additivity="false">
+                <appender-ref ref="FileAppender" />
+        </logger>
+        <root level="DEBUG">
+                <appender-ref ref="STDOUT,FileAppender" />
+        </root>
+</configuration>
